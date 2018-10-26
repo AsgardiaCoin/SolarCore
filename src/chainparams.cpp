@@ -53,7 +53,8 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("00009f11d66bd805884b51cf8c60c6d290b9e6074ec1713aee5ea204f7761b15"));
+    (0, uint256("ff94806b51aeb7b67267bcdebb5881eeaf01e64886d98d6c6b241f4b158f9e2b"));
+
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1539861001, // * UNIX timestamp of last checkpoint block
@@ -112,17 +113,8 @@ public:
         nModifierUpdateBlock = 615800;
         nMaxMoneyOut = 250000000 * COIN;
 
-        /**
-         * Build the genesis block. Note that the output of the genesis coinbase cannot
-         * be spent as it did not originally exist in the database.
-         *
-         * CBlock(hash=00000ffd590b14, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=e0028e, nTime=1390095618, nBits=1e0ffff0, nNonce=28917698, vtx=1)
-         *   CTransaction(hash=e0028e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-         *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d01044c5957697265642030392f4a616e2f3230313420546865204772616e64204578706572696d656e7420476f6573204c6976653a204f76657273746f636b2e636f6d204973204e6f7720416363657074696e6720426974636f696e73)
-         *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
-         *   vMerkleTree: e0028e
-         */
-        const char* pszTimestamp = "hello v2 available now";
+
+        const char* pszTimestamp = "hello v2 available now you know";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -137,28 +129,15 @@ public:
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 68443;
 
-		//Generating genesis block
-      /*  genesis.nNonce   = 0;
-        do {
-            genesis.nNonce++;
-            hashGenesisBlock = genesis.GetHash();
-        } while(hashGenesisBlock > uint256("0x0001000000000000000000000000000000000000000000000000000000000000"));
-	std::cout << "txNew:" << std::endl << txNew.ToString() << std::endl << std::endl;
-        std::cout <<"hashGenesisBlock:" << std::endl;
-        std::cout << hashGenesisBlock.ToString() << std::endl << std::endl;
- 
-        std::cout <<"genesis:" << std::endl << std::endl;
-        std::cout << genesis.ToString() << std::endl;
-        //End generating genesis block/*/
-		
+
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("00009f11d66bd805884b51cf8c60c6d290b9e6074ec1713aee5ea204f7761b15"));
-        assert(genesis.hashMerkleRoot == uint256("731aad33283582b91092d06d86d89e90e8b11ac33a8f41ba19bfa5395db8de99"));
+        assert(hashGenesisBlock == uint256("ff94806b51aeb7b67267bcdebb5881eeaf01e64886d98d6c6b241f4b158f9e2b"));
+        assert(genesis.hashMerkleRoot == uint256("b12a2ce7703614c97a5a5aa5a95210e0a6718b377e287f9848b8350a1cd0c693"));
 
         /*vSeeds.push_back(CDNSSeedData("80.211.202.181", "80.211.202.181"));         // Single node address
         vSeeds.push_back(CDNSSeedData("94.177.187.54", "94.177.187.54"));*/           // Single node address
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 125);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63); // Solar addresses start with 'S'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 13);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 179);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
@@ -181,7 +160,7 @@ public:
         nPoolMaxTransactions = 3;
         strSporkKey = "0488207ddc1c73a064e636d80ff776f81bdcd6f4a898c9783d128bf487c33db39a6fd2d44b194b141bcc0425d5c3cbd6db561dcf129a8188eefc15d0667317f27d";
         strObfuscationPoolDummyAddress = "sPqRnqvRHKq8YmXkvYQV1AQmhSr4hzsXGA";
-		
+
         nStartMasternodePayments = 1539861001; //Wed, 2 Aug 2018 16:36:16 GMT
     }
 
@@ -226,12 +205,12 @@ public:
         genesis.nNonce = 68443;
 
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("00009f11d66bd805884b51cf8c60c6d290b9e6074ec1713aee5ea204f7761b15"));
+        assert(hashGenesisBlock == uint256("ff94806b51aeb7b67267bcdebb5881eeaf01e64886d98d6c6b241f4b158f9e2b"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet Solar addresses start with 'x' or 'y'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 125); // Testnet Solar addresses start with 's'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet Solar script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         // Testnet Solar BIP32 pubkeys start with 'DRKV'
@@ -293,7 +272,7 @@ public:
 
         hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 39793;
-        assert(hashGenesisBlock == uint256("00009f11d66bd805884b51cf8c60c6d290b9e6074ec1713aee5ea204f7761b15"));
+        assert(hashGenesisBlock == uint256("ff94806b51aeb7b67267bcdebb5881eeaf01e64886d98d6c6b241f4b158f9e2b"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.
