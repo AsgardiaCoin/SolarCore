@@ -731,7 +731,7 @@ WalletFrame {
     }
     
     QDialog#RPCConsole QWidget#tab_peers QLabel#peerHeading { /* Peers Info Header */
-    color:#382f44;
+    color:#333;
     }
     
     QDialog#RPCConsole QTableView#peerWidget::item { /* Peers Table Items */
